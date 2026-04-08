@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Plane, Wallet, CalendarDays, Compass, Loader2 } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 export default function PlanTrip({ setTripData }) {
   const [formData, setFormData] = useState({ destination: '', budget: '', days: '' });
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +18,7 @@ export default function PlanTrip({ setTripData }) {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('http://localhost:5000/api/trips/plan-trip', formData, {
+      const res = await axios.post(`${API_URL}/api/trips/plan-trip`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

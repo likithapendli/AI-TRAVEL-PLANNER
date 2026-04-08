@@ -3,6 +3,8 @@ import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { MapPin, Coins, Star, Clock, Calendar, Check, Utensils, Landmark, Ticket, Send, Mail, User, Phone, MessageSquare, Loader2 } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 export default function Result({ tripData }) {
   const [bookingModal, setBookingModal] = useState({ isOpen: false, hotel: null });
   const [bookingDetails, setBookingDetails] = useState({ checkIn: '', checkOut: '', guests: 1 });
@@ -28,7 +30,7 @@ export default function Result({ tripData }) {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/bookings/book-hotel', {
+      await axios.post(`${API_URL}/api/bookings/book-hotel`, {
         hotelName: bookingModal.hotel.name,
         checkIn: bookingDetails.checkIn,
         checkOut: bookingDetails.checkOut,
@@ -52,7 +54,7 @@ export default function Result({ tripData }) {
     setEmailStatus({ loading: true, success: '', error: '' });
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/trips/send-email', {
+      await axios.post(`${API_URL}/api/trips/send-email`, {
         email: emailModal.email,
         tripData: tripData
       }, {
@@ -69,7 +71,7 @@ export default function Result({ tripData }) {
     e.preventDefault();
     setContactStatus({ loading: true, success: '', error: '' });
     try {
-      await axios.post('http://localhost:5000/api/contact', contactForm);
+      await axios.post(`${API_URL}/api/contact`, contactForm);
       setContactStatus({ loading: false, success: 'Your message has been sent!', error: '' });
       setContactForm({ name: '', email: '', phone: '' });
       setTimeout(() => setContactStatus({ loading: false, success: '', error: '' }), 3000);

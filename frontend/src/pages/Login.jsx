@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { MapPin, Mail, Lock } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 export default function Login({ onLogin }) {
   const [formData, setFormData] = useState({ identifier: '', password: '' });
   const [error, setError] = useState('');
@@ -17,7 +19,7 @@ export default function Login({ onLogin }) {
     try {
       // Allow user to use email or username to login. Backend accepts email inside login.
       // However the backend might expect specific fields. For now sending both as email and checking.
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post(`${API_URL}/api/auth/login`, {
         identifier: formData.identifier,
         password: formData.password
       });

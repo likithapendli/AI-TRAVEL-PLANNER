@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { User, Mail, Phone, Lock, Compass } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 export default function Register() {
   const [formData, setFormData] = useState({
     username: '',
@@ -36,7 +38,7 @@ export default function Register() {
     setIsLoading(true);
 
     try {
-      await axios.post('http://localhost:5000/api/auth/register', {
+      await axios.post(`${API_URL}/api/auth/register`, {
         username: formData.username,
         email: formData.email,
         phone: formData.phone,
