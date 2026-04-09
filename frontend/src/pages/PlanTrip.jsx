@@ -4,8 +4,6 @@ import axios from 'axios';
 import { Plane, Wallet, CalendarDays, Compass, Loader2 } from 'lucide-react';
 import API_URL from '../api';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
 export default function PlanTrip({ setTripData }) {
   const [formData, setFormData] = useState({ destination: '', budget: '', days: '' });
   const [isLoading, setIsLoading] = useState(false);

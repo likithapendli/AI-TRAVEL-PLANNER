@@ -4,8 +4,6 @@ import axios from 'axios';
 import { MapPin, Coins, Star, Clock, Calendar, Check, Utensils, Landmark, Ticket, Send, Mail, User, Phone, MessageSquare, Loader2 } from 'lucide-react';
 import API_URL from '../api';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
 export default function Result({ tripData }) {
   const [bookingModal, setBookingModal] = useState({ isOpen: false, hotel: null });
   const [bookingDetails, setBookingDetails] = useState({ checkIn: '', checkOut: '', guests: 1 });

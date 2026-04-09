@@ -4,8 +4,6 @@ import axios from 'axios';
 import { MapPin, Mail, Lock } from 'lucide-react';
 import API_URL from '../api';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
 export default function Login({ onLogin }) {
   const [formData, setFormData] = useState({ identifier: '', password: '' });
   const [error, setError] = useState('');
