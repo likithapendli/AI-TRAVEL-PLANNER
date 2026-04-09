@@ -1,0 +1,33 @@
+services:
+  # Backend Service
+  - type: web
+    name: ai-travel-planner-backend
+    runtime: node
+    # Build from the backend directory
+    buildCommand: cd backend && npm install
+    # Start the server
+    startCommand: cd backend && npm start
+    envVars:
+      - key: MONGO_URI
+        sync: false # Set in Render Dashboard
+      - key: JWT_SECRET
+        sync: false # Set in Render Dashboard
+      - key: GEMINI_API_KEY
+        sync: false # Set in Render Dashboard
+      - key: PORT
+        value: 5000
+
+  # Frontend Service (Static Site)
+  - type: static
+    name: ai-travel-planner-frontend
+    runtime: static
+    # Build from the frontend directory
+    # Note: VITE_API_URL should be set in Render static site settings
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: ai-travel-planner-backend
+          property: host

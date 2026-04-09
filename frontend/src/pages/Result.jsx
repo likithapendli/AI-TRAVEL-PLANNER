@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { MapPin, Coins, Star, Clock, Calendar, Check, Utensils, Landmark, Ticket, Send, Mail, User, Phone, MessageSquare, Loader2 } from 'lucide-react';
+import API_URL from '../api';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
